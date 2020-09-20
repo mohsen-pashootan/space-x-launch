@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getPastSpaceLaunch } from "./../stateManager/actions";
 
 export default function PastLaunches() {
+  const { pastSpaceLaunch } = useSelector((state: ROOTSTATE) => state);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getPastSpaceLaunch("https://api.spacexdata.com/v3/launches/past"));
+  }, [dispatch]);
+
   return (
     <>
       <table>
@@ -13,7 +22,17 @@ export default function PastLaunches() {
             <th>Details</th>
           </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+          {pastSpaceLaunch.map((sx) => (
+            <tr key={sx.flightNumber}>
+              <th>{sx.flightNumber}</th>
+              <th>{sx.missionName}</th>
+              <th>{sx.launchDate}</th>
+              <th>{sx.launchSite}</th>
+              <th>{sx.details}</th>
+            </tr>
+          ))}
+        </tbody>
       </table>
     </>
   );

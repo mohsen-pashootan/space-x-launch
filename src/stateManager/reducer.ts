@@ -29,6 +29,28 @@ export default function reducer(state = INIT_STATE, action) {
         loading: true,
       };
 
+    case "PAST_LAUNCH":
+      console.log(action.payload);
+      const newPastLaunch = action.payload.map(
+        (item) =>
+          new ShuttleProduct({
+            missionName: item.mission_name,
+            flightNumber: item.flight_number,
+            launchDate: new Date(item.launch_date_utc).toUTCString(),
+            details: item.details,
+            launchSite: item.launch_site.site_name_long,
+          })
+      );
+      const pastTotal = newPastLaunch.length;
+      console.log(newPastLaunch);
+
+      return {
+        ...state,
+        pastSpaceLaunch: [...newPastLaunch],
+        totalCount: pastTotal,
+        loading: false,
+      };
+
     case "UPCOMING_LAUNCH":
       console.log("up");
       const newUpcomingLaunch = action.payload.map(
