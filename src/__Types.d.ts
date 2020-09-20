@@ -2,6 +2,7 @@ type ROOTSTATE = {
   pastSpaceLaunch: LAUNCH[];
   upcomingSpaceLaunch: LAUNCH[];
   loading: false;
+  searchedplan: "";
 };
 
 type LAUNCH = {

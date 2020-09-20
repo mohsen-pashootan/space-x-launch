@@ -24,3 +24,5 @@ export const getUpcomingSpaceLaunch = (url) => {
       .then((data) => dispatch({ type: "UPCOMING_LAUNCH", payload: data }));
   };
 };
+
+export const getSearched = (text) => actionCreator("SEARCHED_TEXT", text);

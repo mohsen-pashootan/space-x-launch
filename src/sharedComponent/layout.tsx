@@ -1,11 +1,14 @@
 import React, { useRef } from "react";
 import styles from "./layout.module.css";
+import { getSearched } from "./../stateManager/actions";
+import { useDispatch } from "react-redux";
 
 export default function Layout({ children, onPast, onLuanch }) {
   const getSearch = useRef();
+  const dispatch = useDispatch();
 
   function handleSearch(text: string) {
-    console.log(text);
+    dispatch(getSearched(text));
   }
 
   return (

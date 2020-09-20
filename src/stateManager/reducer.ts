@@ -2,6 +2,7 @@ export const INIT_STATE = {
   pastSpaceLaunch: [],
   upcomingSpaceLaunch: [],
   loading: false,
+  searchedplan: "",
 };
 
 class ShuttleProduct {
@@ -68,6 +69,12 @@ export default function reducer(state = INIT_STATE, action) {
         ...state,
         upcomingSpaceLaunch: [...newUpcomingLaunch],
         loading: false,
+      };
+
+    case "SEARCHED_TEXT":
+      return {
+        ...state,
+        searchedplan: action.payload,
       };
 
     default:

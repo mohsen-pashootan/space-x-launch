@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUpcomingSpaceLaunch } from "../stateManager/actions";
 
 export default function UpcomingLaunches() {
-  const { upcomingSpaceLaunch } = useSelector((state: ROOTSTATE) => state);
+  const { upcomingSpaceLaunch, searchedplan } = useSelector(
+    (state: ROOTSTATE) => state
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,15 +27,23 @@ export default function UpcomingLaunches() {
           </tr>
         </thead>
         <tbody>
-          {upcomingSpaceLaunch.map((sx) => (
-            <tr key={sx.flightNumber}>
-              <th>{sx.flightNumber}</th>
-              <th>{sx.missionName}</th>
-              <th>{sx.launchDate}</th>
-              <th>{sx.launchSite}</th>
-              <th>{sx.details}</th>
-            </tr>
-          ))}
+          {upcomingSpaceLaunch
+            .filter((item) =>
+              item.launchSite !== null
+                ? item.launchSite
+                    .toLowerCase()
+                    .includes(searchedplan.toLowerCase())
+                : item
+            )
+            .map((sx) => (
+              <tr key={sx.flightNumber}>
+                <th>{sx.flightNumber}</th>
+                <th>{sx.missionName}</th>
+                <th>{sx.launchDate}</th>
+                <th>{sx.launchSite}</th>
+                <th>{sx.details}</th>
+              </tr>
+            ))}
         </tbody>
       </table>
     </>
