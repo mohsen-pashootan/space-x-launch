@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUpcomingSpaceLaunch } from "../stateManager/actions";
+import "./launches.module.css";
 
 export default function UpcomingLaunches() {
   const { upcomingSpaceLaunch, searchedplan } = useSelector(
