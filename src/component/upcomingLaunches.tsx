@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Loading from "../sharedComponent/loading";
 import { getUpcomingSpaceLaunch } from "../stateManager/actions";
 import "./launches.module.css";
 
 export default function UpcomingLaunches() {
-  const { upcomingSpaceLaunch, searchedplan } = useSelector(
+  const { upcomingSpaceLaunch, searchedplan, loading } = useSelector(
     (state: ROOTSTATE) => state
   );
   const dispatch = useDispatch();
@@ -15,6 +16,9 @@ export default function UpcomingLaunches() {
     );
   }, [dispatch]);
 
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <>
       <table>

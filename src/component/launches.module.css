@@ -2,8 +2,6 @@
     box-sizing: border-box;
 }
 
-
-
 table {
     display: grid;
     border-collapse: collapse;
@@ -49,33 +47,3 @@ td {
 tr:nth-child(even) td {
     background: #f8f6ff;
 }
-
-/* table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
-
-td,
-th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-}
-
-
-tr:nth-child(even) {
-    background-color: #dddddd;
-} */
-
-/* .main-table {
-    border-radius: 5px;
-    font-size: 12px;
-    font-weight: normal;
-    border: none;
-    border-collapse: collapse;
-    width: 100%;
-    max-width: 100%;
-    white-space: nowrap;
-    background-color: white;
-} */

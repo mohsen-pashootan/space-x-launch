@@ -36,11 +36,6 @@ export default function Layout({ onPast, onLuanch }) {
               Upcoming Launches
             </button>
           </span>
-          <span>
-            <i className="fa fa-spinner fa-spin"></i>
-            <br />
-            <i className="icon-spinner"></i>
-          </span>
         </div>
       </div>
     </>
