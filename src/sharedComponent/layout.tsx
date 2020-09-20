@@ -1,10 +1,10 @@
 import React, { useRef } from "react";
-import styles from "./layout.module.scss";
+import styles from "./layout.module.css";
 
 export default function Layout({ children, onPast, onLuanch }) {
   const getSearch = useRef();
 
-  function handleSearch(text) {
+  function handleSearch(text: string) {
     console.log(text);
   }
 
@@ -13,6 +13,7 @@ export default function Layout({ children, onPast, onLuanch }) {
       <div className={styles["container"]}>
         <h1 className={styles["title"]}>SpaceX's launches list</h1>
         <input
+          className={styles["input"]}
           type="text"
           onChange={(e) => handleSearch(e.target.value)}
           ref={getSearch}

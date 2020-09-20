@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import Layout from "./sharedComponent/layout";
 
 function App() {
   const [mode, setMode] = useState("earth");
-  return <Layout></Layout>;
+  return (
+    <Layout onPast onLuanch>
+      {}
+    </Layout>
+  );
 }
 
 export default App;
