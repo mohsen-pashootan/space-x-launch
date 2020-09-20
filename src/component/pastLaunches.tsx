@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPastSpaceLaunch } from "./../stateManager/actions";
 
 export default function PastLaunches() {
-  const { pastSpaceLaunch } = useSelector((state: ROOTSTATE) => state);
+  const { pastSpaceLaunch, searchedplan } = useSelector(
+    (state: ROOTSTATE) => state
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,15 +25,19 @@ export default function PastLaunches() {
           </tr>
         </thead>
         <tbody>
-          {pastSpaceLaunch.map((sx) => (
-            <tr key={sx.flightNumber}>
-              <th>{sx.flightNumber}</th>
-              <th>{sx.missionName}</th>
-              <th>{sx.launchDate}</th>
-              <th>{sx.launchSite}</th>
-              <th>{sx.details}</th>
-            </tr>
-          ))}
+          {pastSpaceLaunch
+            .filter((item) =>
+              item.launchSite.toLowerCase().includes(searchedplan.toLowerCase())
+            )
+            .map((sx) => (
+              <tr key={sx.flightNumber}>
+                <th>{sx.flightNumber}</th>
+                <th>{sx.missionName}</th>
+                <th>{sx.launchDate}</th>
+                <th>{sx.launchSite}</th>
+                <th>{sx.details}</th>
+              </tr>
+            ))}
         </tbody>
       </table>
     </>
