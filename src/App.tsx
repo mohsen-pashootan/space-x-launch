@@ -13,10 +13,11 @@ function App() {
     setMode("launch");
   }
   return (
-    <Layout onPast={handleOnPast} onLuanch={handleOnLaunch}>
+    <>
+      <Layout onPast={handleOnPast} onLuanch={handleOnLaunch} />
       {mode === "past" && <PastLaunches />}
       {mode === "launch" && <UpcomingLaunches />}
-    </Layout>
+    </>
   );
 }
 

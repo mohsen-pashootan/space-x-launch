@@ -38,11 +38,11 @@ export default function UpcomingLaunches() {
             )
             .map((sx) => (
               <tr key={sx.flightNumber}>
-                <th>{sx.flightNumber}</th>
-                <th>{sx.missionName}</th>
-                <th>{sx.launchDate}</th>
-                <th>{sx.launchSite}</th>
-                <th>{sx.details}</th>
+                <td>{sx.flightNumber}</td>
+                <td>{sx.missionName}</td>
+                <td>{sx.launchDate}</td>
+                <td>{sx.launchSite}</td>
+                <td>{sx.details}</td>
               </tr>
             ))}
         </tbody>

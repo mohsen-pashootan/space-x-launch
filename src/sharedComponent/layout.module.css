@@ -1,21 +1,26 @@
+.wrapper {
+    width: 100%;
+    background: rgb(133, 172, 212);
+}
+
 .container {
-    position: sticky;
-    top: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: rgb(231, 226, 221);
+    justify-content: center;
     height: auto;
-    width: 100%;
-
+    max-width: 1600px;
+    background-image: url("/spacex.png");
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: 500px;
 }
 
 .input {
     border-radius: 5px;
     margin: 10px;
-    padding: 10px 100px;
+    padding: 5px 160px 5px 30px;
 }
-
 
 .title {
     display: flex;
@@ -24,17 +29,100 @@
     padding: 10px;
 }
 
-.btn-upcome {
-    background-color: aqua;
+.btn {
+    background-color: #c5c5c5;
+    border: none;
     border-radius: 5px;
-    padding: 10px;
-    margin: 10px;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    padding: 20px;
+    font-size: 16px;
+    margin: 4px 13px 20px;
+    cursor: pointer;
 }
 
-.btn-past {
-    background-color: aqua;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px;
+.btn:hover {
+    background-color: #afafaf;
+}
 
+.search {
+    position: relative;
+    font-size: 18px;
+    padding-top: 40px;
+    margin: -20px auto 0;
+}
+
+.search label {
+    position: absolute;
+    left: 17px;
+    top: 54px;
+}
+
+lable {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    color: gray;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+}
+
+@media only screen and (max-width: 1195px) {
+    .input {
+        margin: 10px;
+        padding: 5px 140px 5px 30px;
+    }
+
+    .btn {
+        padding: 15px;
+        font-size: 16px;
+        margin: 4px 13px 20px;
+    }
+
+    .container {
+        background-image: url("/spacex.png");
+        background-repeat: no-repeat;
+        background-position: left;
+        background-size: 350px;
+    }
+}
+
+@media only screen and (max-width: 928px) {
+    .container {
+        background-image: url("/spacex.png");
+        background-repeat: no-repeat;
+        background-position: center top;
+        background-size: 250px;
+    }
+
+    .title {
+        margin-top: 40px;
+    }
+
+    .search {
+        padding-top: 0px;
+    }
+
+    .search label {
+        top: 15px;
+    }
+
+    .input {
+        padding: 5px 140px 5px 30px;
+    }
+
+    .btn {
+        padding: 10px;
+        font-size: 16px;
+        margin: 4px 13px 20px;
+    }
 }
