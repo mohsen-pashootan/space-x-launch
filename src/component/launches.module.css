@@ -7,7 +7,7 @@ table {
     border-collapse: collapse;
     min-width: 100%;
     grid-template-columns:
-        minmax(240px, 1fr) minmax(240px, 1.67fr) minmax(240px, 1.67fr) minmax(240px, 3.33fr) minmax(240px, 3.33fr)
+        minmax(140px, 1fr) minmax(170px, 1.67fr) minmax(240px, 1.67fr) minmax(240px, 3.33fr) minmax(240px, 3.33fr)
 }
 
 thead,
@@ -21,7 +21,8 @@ td {
     padding: 15px;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    text-align: justify;
+    white-space: wrap;
 }
 
 th {
@@ -42,6 +43,7 @@ td {
     padding-top: 10px;
     padding-bottom: 10px;
     color: #808080;
+
 }
 
 tr:nth-child(even) td {
