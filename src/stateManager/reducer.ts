@@ -45,11 +45,7 @@ export default function reducer(state = INIT_STATE, action) {
           })
       );
       const count = newPastLaunch.length;
-      const landingList = Paginate(
-        newPastLaunch,
-        state.currentPage,
-        state.pageSize
-      );
+      const landingList = Paginate(newPastLaunch, 1, state.pageSize);
 
       return {
         ...state,
@@ -57,6 +53,7 @@ export default function reducer(state = INIT_STATE, action) {
         pastSpaceLaunch: [...landingList],
         loading: false,
         itemsCount: count,
+        currentPage: 1,
       };
 
     case "UPCOMING_LAUNCH":
@@ -71,11 +68,7 @@ export default function reducer(state = INIT_STATE, action) {
           })
       );
       const upComingCount = newUpcomingLaunch.length;
-      const upComingList = Paginate(
-        newUpcomingLaunch,
-        state.currentPage,
-        state.pageSize
-      );
+      const upComingList = Paginate(newUpcomingLaunch, 1, state.pageSize);
 
       return {
         ...state,
@@ -83,6 +76,7 @@ export default function reducer(state = INIT_STATE, action) {
         upcomingSpaceLaunch: [...upComingList],
         loading: false,
         itemsCount: upComingCount,
+        currentPage: 1,
       };
 
     case "SEARCHED_TEXT":
