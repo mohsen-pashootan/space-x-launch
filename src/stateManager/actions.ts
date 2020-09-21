@@ -5,7 +5,7 @@ function actionCreator(type: string, payload: unknown) {
   };
 }
 
-export const getPastSpaceLaunch = (url) => {
+export const getPastSpaceLaunch = (url: string) => {
   return (dispatch) => {
     dispatch({ type: "LOADING" });
 
@@ -15,7 +15,7 @@ export const getPastSpaceLaunch = (url) => {
   };
 };
 
-export const getUpcomingSpaceLaunch = (url) => {
+export const getUpcomingSpaceLaunch = (url: string) => {
   return (dispatch) => {
     dispatch(actionCreator("LOADING", null));
 
@@ -25,4 +25,14 @@ export const getUpcomingSpaceLaunch = (url) => {
   };
 };
 
-export const getSearched = (text) => actionCreator("SEARCHED_TEXT", text);
+export const getSearched = (text: string) =>
+  actionCreator("SEARCHED_TEXT", text);
+
+export const pageChanged = (pageNumber: number) =>
+  actionCreator("PAGE_CHANGED", pageNumber);
+
+export const pastPageChanged = (pageNumber: number) =>
+  actionCreator("PAST_PAGE_CHANGED", pageNumber);
+
+export const upcomingPageChanged = (pageNumber: number) =>
+  actionCreator("UPCOMING_PAGE_CHANGED", pageNumber);

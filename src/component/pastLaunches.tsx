@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../sharedComponent/loading";
-import { getPastSpaceLaunch } from "./../stateManager/actions";
+import Pagination from "../sharedComponent/pagination";
+import { getPastSpaceLaunch, pastPageChanged } from "./../stateManager/actions";
 import "./launches.module.css";
 
 export default function PastLaunches() {
@@ -13,6 +14,10 @@ export default function PastLaunches() {
   useEffect(() => {
     dispatch(getPastSpaceLaunch("https://api.spacexdata.com/v3/launches/past"));
   }, [dispatch]);
+
+  function handlePageChange(pageNumber: number) {
+    dispatch(pastPageChanged(pageNumber));
+  }
 
   if (loading) {
     return <Loading />;
@@ -45,6 +50,7 @@ export default function PastLaunches() {
             ))}
         </tbody>
       </table>
+      <Pagination onPageChange={handlePageChange} />
     </>
   );
 }

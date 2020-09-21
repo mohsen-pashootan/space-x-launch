@@ -1,0 +1,37 @@
+.nav-container {
+    margin-top: 10px;
+    display: inline-block;
+
+}
+
+.count-container {
+    display: inline-block;
+    overflow: hidden;
+    background-color: lavender;
+}
+
+.nav-span {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    list-style-type: none;
+    border: 1px solid #ddd;
+    cursor: pointer;
+
+}
+
+.nav-active {
+    background-color: #00518b;
+    color: white;
+    border: 1px solid;
+}
+
+.count-container span:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.count-container span:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}

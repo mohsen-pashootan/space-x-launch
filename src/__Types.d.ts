@@ -1,8 +1,13 @@
 type ROOTSTATE = {
+  mainPastSpaceLaunch: LAUNCH[];
+  mainUpcomingSpaceLaunch: LAUNCH[];
   pastSpaceLaunch: LAUNCH[];
   upcomingSpaceLaunch: LAUNCH[];
   loading: false;
   searchedplan: "";
+  pageSize: number;
+  itemsCount: number;
+  currentPage: number;
 };
 
 type LAUNCH = {

@@ -1,8 +1,13 @@
 export const INIT_STATE = {
+  mainPastSpaceLaunch: [],
   pastSpaceLaunch: [],
+  mainUpcomingSpaceLaunch: [],
   upcomingSpaceLaunch: [],
   loading: false,
   searchedplan: "",
+  pageSize: 10,
+  itemsCount: null,
+  currentPage: 1,
 };
 
 class ShuttleProduct {
@@ -29,7 +34,7 @@ export default function reducer(state = INIT_STATE, action) {
       };
 
     case "PAST_LAUNCH":
-      const newPastLaunch = action.payload.map(
+      const newPastLaunch: LAUNCH[] = action.payload.map(
         (item) =>
           new ShuttleProduct({
             missionName: item.mission_name,
@@ -39,14 +44,23 @@ export default function reducer(state = INIT_STATE, action) {
             launchSite: item.launch_site.site_name_long,
           })
       );
+      const count = newPastLaunch.length;
+      const landingList = Paginate(
+        newPastLaunch,
+        state.currentPage,
+        state.pageSize
+      );
+
       return {
         ...state,
-        pastSpaceLaunch: [...newPastLaunch],
+        mainPastSpaceLaunch: [...newPastLaunch],
+        pastSpaceLaunch: [...landingList],
         loading: false,
+        itemsCount: count,
       };
 
     case "UPCOMING_LAUNCH":
-      const newUpcomingLaunch = action.payload.map(
+      const newUpcomingLaunch: LAUNCH[] = action.payload.map(
         (item) =>
           new ShuttleProduct({
             missionName: item.mission_name,
@@ -56,10 +70,19 @@ export default function reducer(state = INIT_STATE, action) {
             launchSite: item.launch_site.site_name_long,
           })
       );
+      const upComingCount = newUpcomingLaunch.length;
+      const upComingList = Paginate(
+        newUpcomingLaunch,
+        state.currentPage,
+        state.pageSize
+      );
+
       return {
         ...state,
-        upcomingSpaceLaunch: [...newUpcomingLaunch],
+        mainUpcomingSpaceLaunch: [...newUpcomingLaunch],
+        upcomingSpaceLaunch: [...upComingList],
         loading: false,
+        itemsCount: upComingCount,
       };
 
     case "SEARCHED_TEXT":
@@ -68,7 +91,39 @@ export default function reducer(state = INIT_STATE, action) {
         searchedplan: action.payload,
       };
 
+    case "PAST_PAGE_CHANGED":
+      const remainPastList = Paginate(
+        state.mainPastSpaceLaunch,
+        action.payload,
+        state.pageSize
+      );
+
+      return {
+        ...state,
+        currentPage: action.payload,
+        pastSpaceLaunch: [...remainPastList],
+      };
+
+    case "UPCOMING_PAGE_CHANGED":
+      const remainUpcomingList = Paginate(
+        state.mainUpcomingSpaceLaunch,
+        action.payload,
+        state.pageSize
+      );
+      return {
+        ...state,
+        currentPage: action.payload,
+        upcomingSpaceLaunch: [...remainUpcomingList],
+      };
+
     default:
       return state;
   }
+}
+
+function Paginate(items, pageNumber, pageSize) {
+  const startIndex = (pageNumber - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+  const newItems = [...items].slice(startIndex, endIndex);
+  return newItems;
 }

@@ -1,7 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "../sharedComponent/loading";
-import { getUpcomingSpaceLaunch } from "../stateManager/actions";
+import Pagination from "../sharedComponent/pagination";
+import {
+  getUpcomingSpaceLaunch,
+  upcomingPageChanged,
+} from "../stateManager/actions";
 import "./launches.module.css";
 
 export default function UpcomingLaunches() {
@@ -15,6 +19,10 @@ export default function UpcomingLaunches() {
       getUpcomingSpaceLaunch("https://api.spacexdata.com/v3/launches/upcoming")
     );
   }, [dispatch]);
+
+  function handlePageChange(pageNumber: number) {
+    dispatch(upcomingPageChanged(pageNumber));
+  }
 
   if (loading) {
     return <Loading />;
@@ -51,6 +59,7 @@ export default function UpcomingLaunches() {
             ))}
         </tbody>
       </table>
+      <Pagination onPageChange={handlePageChange} />
     </>
   );
 }
