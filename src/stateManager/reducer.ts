@@ -23,15 +23,12 @@ class ShuttleProduct {
 export default function reducer(state = INIT_STATE, action) {
   switch (action.type) {
     case "LOADING":
-      console.log("loading");
-
       return {
         ...state,
         loading: true,
       };
 
     case "PAST_LAUNCH":
-      console.log(action.payload);
       const newPastLaunch = action.payload.map(
         (item) =>
           new ShuttleProduct({
@@ -42,18 +39,13 @@ export default function reducer(state = INIT_STATE, action) {
             launchSite: item.launch_site.site_name_long,
           })
       );
-      const pastTotal = newPastLaunch.length;
-      console.log(newPastLaunch);
-
       return {
         ...state,
         pastSpaceLaunch: [...newPastLaunch],
-        totalCount: pastTotal,
         loading: false,
       };
 
     case "UPCOMING_LAUNCH":
-      console.log("up");
       const newUpcomingLaunch = action.payload.map(
         (item) =>
           new ShuttleProduct({
@@ -64,7 +56,6 @@ export default function reducer(state = INIT_STATE, action) {
             launchSite: item.launch_site.site_name_long,
           })
       );
-      console.log(newUpcomingLaunch);
       return {
         ...state,
         upcomingSpaceLaunch: [...newUpcomingLaunch],

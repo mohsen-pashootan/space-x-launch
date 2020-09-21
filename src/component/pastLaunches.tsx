@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Loading from "../sharedComponent/loading";
 import { getPastSpaceLaunch } from "./../stateManager/actions";
 import "./launches.module.css";
 
 export default function PastLaunches() {
-  const { pastSpaceLaunch, searchedplan } = useSelector(
+  const { pastSpaceLaunch, searchedplan, loading } = useSelector(
     (state: ROOTSTATE) => state
   );
   const dispatch = useDispatch();
@@ -13,6 +14,9 @@ export default function PastLaunches() {
     dispatch(getPastSpaceLaunch("https://api.spacexdata.com/v3/launches/past"));
   }, [dispatch]);
 
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <>
       <table>

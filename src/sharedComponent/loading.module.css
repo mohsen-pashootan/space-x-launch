@@ -1,0 +1,17 @@
+.spin-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 65vh;
+    background-color: #c7c4c478;
+}
+
+.spiner {
+    padding: 20px;
+    font-size: 30px;
+    backdrop-filter: blur(2px);
+}
+
+i {
+    color: #00518b;
+}
